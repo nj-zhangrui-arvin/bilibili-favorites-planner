@@ -2,12 +2,46 @@
 
 本文面向普通用户，说明如何从采集到执行完整整理一次 B 站收藏夹。
 
-## 1. 安装脚本
+## 1. 安装
+
+### 1.1 安装本地 Planner
+
+需要 Node.js 18 或更高版本。打开终端后执行：
+
+```bash
+git clone https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner.git
+cd bilibili-favorites-planner
+npm run validate:examples
+```
+
+校验通过后即可使用。后续命令都在 `bilibili-favorites-planner` 目录里执行。
+
+可选：如果希望少输入脚本路径，可以注册成本机命令：
+
+```bash
+npm link
+```
+
+注册后可以用 `bili-favorites-planner` 代替 `node scripts/run-planner.mjs`。
+
+### 1.2 安装浏览器脚本
 
 在 Chrome 安装 Tampermonkey，然后安装两个 userscript：
 
 - Crawler：只读采集收藏夹数据。
 - Executor：导入任务包并执行迁移。
+
+Crawler 安装地址：
+
+```text
+https://raw.githubusercontent.com/nj-zhangrui-arvin/bilibili-favorites-planner/main/scripts/bilibili_favorites_crawler.user.js
+```
+
+Executor 仓库：
+
+```text
+https://github.com/nj-zhangrui-arvin/bilibili-favorites-executor
+```
 
 建议把 Chrome 专门用于 B 站自动化，日常浏览器和自动化浏览器分开。
 
@@ -43,6 +77,12 @@ https://space.bilibili.com/<你的 mid>/favlist
 
 ```bash
 node scripts/run-planner.mjs auto bilibili-favorites-evidence.jsonl
+```
+
+如果已经执行过 `npm link`，也可以运行：
+
+```bash
+bili-favorites-planner auto bilibili-favorites-evidence.jsonl
 ```
 
 Planner 会：

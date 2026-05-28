@@ -36,6 +36,51 @@ flowchart TD
 
 ![Planner 复核页](docs/assets/review-page-demo.png)
 
+## 安装
+
+本项目目前不需要 npm 包发布，直接从 GitHub 下载或克隆即可使用。
+
+### 1. 准备本地 Planner
+
+需要先安装 Node.js 18 或更高版本。
+
+```bash
+git clone https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner.git
+cd bilibili-favorites-planner
+npm run validate:examples
+```
+
+如果校验通过，Planner 就可以使用。日常运行用：
+
+```bash
+node scripts/run-planner.mjs auto ~/Downloads/bilibili-favorites-evidence.jsonl
+```
+
+也可以注册成本机命令：
+
+```bash
+npm link
+bili-favorites-planner auto ~/Downloads/bilibili-favorites-evidence.jsonl
+```
+
+### 2. 安装 Crawler 脚本
+
+在 Chrome 安装 Tampermonkey，然后打开下面的脚本地址安装：
+
+```text
+https://raw.githubusercontent.com/nj-zhangrui-arvin/bilibili-favorites-planner/main/scripts/bilibili_favorites_crawler.user.js
+```
+
+Crawler 只负责读取收藏夹并导出 JSONL，不写入 B 站。
+
+### 3. 安装 Executor 脚本
+
+Executor 是单独仓库，只有它会执行写回：
+
+```text
+https://github.com/nj-zhangrui-arvin/bilibili-favorites-executor
+```
+
 ## 快速开始
 
 1. 在 Chrome 安装 Crawler userscript。
