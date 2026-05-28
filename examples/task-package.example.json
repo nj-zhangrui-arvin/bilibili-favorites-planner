@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "plan_name": "demo-migration-plan",
+  "target_folders": [
+    {
+      "folder_name": "编程/开发",
+      "folder_id": ""
+    },
+    {
+      "folder_name": "工具/工作流",
+      "folder_id": ""
+    },
+    {
+      "folder_name": "AI/学习",
+      "folder_id": ""
+    }
+  ],
+  "tasks": [
+    {
+      "operation_id": "op-00001",
+      "action": "move",
+      "bvid": "BV1example01",
+      "aid": "100000001",
+      "title": "Python 自动化整理收藏夹示例",
+      "source_folder": "默认收藏夹",
+      "source_folder_id": "1000000001",
+      "target_folder": "编程/开发",
+      "status": "pending"
+    },
+    {
+      "operation_id": "op-00002",
+      "action": "copy",
+      "bvid": "BV1example01",
+      "aid": "100000001",
+      "title": "Python 自动化整理收藏夹示例",
+      "source_folder": "默认收藏夹",
+      "source_folder_id": "1000000001",
+      "target_folder": "工具/工作流",
+      "status": "pending"
+    },
+    {
+      "operation_id": "op-00003",
+      "action": "move",
+      "bvid": "BV1example02",
+      "aid": "100000002",
+      "title": "AI 工具提升学习效率",
+      "source_folder": "稍后看",
+      "source_folder_id": "1000000002",
+      "target_folder": "AI/学习",
+      "status": "pending"
+    }
+  ],
+  "stats": {
+    "total_tasks": 3,
+    "move_tasks": 2,
+    "copy_tasks": 1
+  }
+}

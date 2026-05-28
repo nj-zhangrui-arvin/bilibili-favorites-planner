@@ -1,0 +1,15 @@
+.DS_Store
+node_modules/
+dist/
+coverage/
+artifacts/
+*.log
+*.tmp
+*.bak
+
+# Real local exports may contain private account data.
+*.private.json
+*.private.jsonl
+reviewed-classification.jsonl
+bilibili-favorites-evidence.jsonl
+bilibili-favorites-test-evidence.jsonl

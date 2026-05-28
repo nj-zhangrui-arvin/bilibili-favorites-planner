@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/bilibili-favorites-planner/task-package.schema.json",
+  "title": "Bilibili Favorites Executor Task Package",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "plan_name", "target_folders", "tasks"],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "plan_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_folders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["folder_name"],
+        "properties": {
+          "folder_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "folder_id": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "operation_id",
+          "action",
+          "bvid",
+          "aid",
+          "title",
+          "source_folder",
+          "source_folder_id",
+          "target_folder",
+          "status"
+        ],
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "pattern": "^op-[0-9]{5}$"
+          },
+          "action": {
+            "enum": ["move", "copy"]
+          },
+          "bvid": {
+            "type": "string",
+            "pattern": "^BV[0-9A-Za-z]+$"
+          },
+          "aid": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_folder": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_folder_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_folder": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": ["pending", "running", "added_to_target", "success", "failed", "blocked"]
+          }
+        }
+      }
+    },
+    "stats": {
+      "type": "object"
+    }
+  }
+}

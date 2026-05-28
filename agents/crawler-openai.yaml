@@ -1,0 +1,3 @@
+display_name: Bilibili Favorites Crawler
+short_description: Capture Bilibili favorites into local JSONL artifacts.
+default_prompt: Use $bilibili-favorites-crawler to capture my logged-in Bilibili favorites from Chrome and validate the exported evidence JSONL.

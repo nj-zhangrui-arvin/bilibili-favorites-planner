@@ -1,0 +1,32 @@
+{
+  "name": "bilibili-favorites-planner",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Read-only crawler and local planner for reviewed Bilibili favorites reorganization task packages.",
+  "type": "module",
+  "bin": {
+    "bili-favorites-planner": "./scripts/run-planner.mjs"
+  },
+  "scripts": {
+    "check": "node --check scripts/*.mjs && node --check scripts/*.js",
+    "validate:examples": "node scripts/validate-crawler-output.mjs examples/evidence.example.jsonl && node scripts/validate-classification-review.mjs examples/classification-review.example.jsonl && node scripts/validate-task-package.mjs examples/task-package.example.json",
+    "demo": "node scripts/run-planner.mjs auto examples/evidence.example.jsonl artifacts/demo"
+  },
+  "keywords": [
+    "bilibili",
+    "favorites",
+    "tampermonkey",
+    "planner",
+    "crawler"
+  ],
+  "author": "zhangrui",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner/issues"
+  },
+  "homepage": "https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner#readme"
+}

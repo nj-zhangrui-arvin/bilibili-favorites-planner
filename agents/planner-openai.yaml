@@ -1,0 +1,3 @@
+display_name: Bilibili Favorites Planner
+short_description: Generate Bilibili migration task packages.
+default_prompt: Generate a read-only Bilibili favorites migration task package from an inventory file and validate it against the executor schema.

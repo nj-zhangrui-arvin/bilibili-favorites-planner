@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "account": {
+    "uid": "123456",
+    "name": "demo-user"
+  },
+  "folders": [
+    {
+      "folder_name": "默认收藏夹",
+      "folder_id": "1000000001"
+    },
+    {
+      "folder_name": "稍后看",
+      "folder_id": "1000000002"
+    }
+  ],
+  "videos": [
+    {
+      "bvid": "BV1example01",
+      "aid": "100000001",
+      "title": "Python 自动化整理收藏夹示例",
+      "source_folders": [
+        {
+          "folder_name": "默认收藏夹",
+          "folder_id": "1000000001"
+        }
+      ],
+      "tags": ["Python", "自动化", "教程"],
+      "partition": "知识",
+      "uploader": "示例 UP",
+      "description": "用 Python 处理结构化数据。",
+      "invalid_or_unavailable": false,
+      "classification": {
+        "primary_folder": "编程/开发",
+        "secondary_folders": ["工具/工作流"],
+        "confidence": "high",
+        "reason": "标题和标签指向编程自动化"
+      }
+    },
+    {
+      "bvid": "BV1example02",
+      "aid": "100000002",
+      "title": "AI 工具提升学习效率",
+      "source_folders": [
+        {
+          "folder_name": "稍后看",
+          "folder_id": "1000000002"
+        }
+      ],
+      "tags": ["AI", "学习"],
+      "partition": "科技",
+      "invalid_or_unavailable": false,
+      "classification": {
+        "primary_folder": "AI/学习",
+        "secondary_folders": [],
+        "confidence": "medium",
+        "reason": "标题和标签都指向 AI 学习"
+      }
+    }
+  ]
+}
