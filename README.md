@@ -38,29 +38,32 @@ flowchart TD
 
 ## 安装
 
-本项目目前不需要 npm 包发布，直接从 GitHub 下载或克隆即可使用。
+普通用户安装三样东西：
 
-### 1. 准备本地 Planner
+1. **Codex Skill**：让 Codex 自动识别 B 站收藏夹整理任务，并在本地生成复核页和任务包。
+2. **Crawler userscript**：装到 Chrome/Tampermonkey，用来只读采集收藏夹。
+3. **Executor userscript**：装到 Chrome/Tampermonkey，用来导入任务包并写回 B 站。
 
-需要先安装 Node.js 18 或更高版本。
+### 1. 安装 Codex Skill
 
-```bash
-git clone https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner.git
-cd bilibili-favorites-planner
-npm run validate:examples
+在 Codex 里安装这个 Skill：
+
+```text
+https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner/tree/main/skills/bilibili-favorites-planner
 ```
 
-如果校验通过，Planner 就可以使用。日常运行用：
+安装后重启 Codex。之后用户把 JSONL 文件交给 Codex，说“生成复核页”或“生成任务包”，Codex 会自动使用 `bilibili-favorites-planner` Skill。
 
-```bash
-node scripts/run-planner.mjs auto ~/Downloads/bilibili-favorites-evidence.jsonl
+给 Codex 的示例提示：
+
+```text
+请用 bilibili-favorites-planner skill，帮我从这个 evidence JSONL 生成复核页。
 ```
 
-也可以注册成本机命令：
+复核完成后：
 
-```bash
-npm link
-bili-favorites-planner auto ~/Downloads/bilibili-favorites-evidence.jsonl
+```text
+请用 bilibili-favorites-planner skill，帮我从 reviewed-classification.jsonl 生成 Executor 任务包。
 ```
 
 ### 2. 安装 Crawler 脚本
@@ -81,15 +84,26 @@ Executor 是单独仓库，只有它会执行写回：
 https://github.com/nj-zhangrui-arvin/bilibili-favorites-executor
 ```
 
+### 开发者手动模式
+
+熟悉终端的用户也可以直接克隆仓库运行 Node 脚本：
+
+```bash
+git clone https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner.git
+cd bilibili-favorites-planner
+npm run validate:examples
+node scripts/run-planner.mjs auto ~/Downloads/bilibili-favorites-evidence.jsonl
+```
+
 ## 快速开始
 
-1. 在 Chrome 安装 Crawler userscript。
+1. 安装 Codex Skill、Crawler userscript 和 Executor userscript。
 2. 打开自己的 B 站收藏夹页面。
 3. 先点 `测试采集`，确认能下载 `bilibili-favorites-test-evidence.jsonl`。
 4. 测试正常后点 `导出收藏夹 JSONL`，得到 `bilibili-favorites-evidence.jsonl`。
-5. 把 evidence 文件交给 Planner，生成并打开 `review.html`。
+5. 把 evidence 文件交给 Codex，让 Skill 生成并打开 `review.html`。
 6. 在复核页人工确认分类，导出 `reviewed-classification.jsonl`。
-7. Planner 根据 reviewed 文件生成 `task-package.json`。
+7. 把 reviewed 文件交给 Codex，让 Skill 生成 `task-package.json`。
 8. 在 Executor 导入任务包，小批量执行。
 
 完整说明见 [用户手册](docs/user-guide.md)。

@@ -4,25 +4,31 @@
 
 ## 1. 安装
 
-### 1.1 安装本地 Planner
+### 1.1 安装 Codex Skill
 
-需要 Node.js 18 或更高版本。打开终端后执行：
+如果你是让 Codex 辅助整理收藏夹，推荐先安装 `bilibili-favorites-planner` Skill。这样 Codex 会自动识别 evidence、reviewed 文件，并在本地运行 Planner。
 
-```bash
-git clone https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner.git
-cd bilibili-favorites-planner
-npm run validate:examples
+Skill 地址：
+
+```text
+https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner/tree/main/skills/bilibili-favorites-planner
 ```
 
-校验通过后即可使用。后续命令都在 `bilibili-favorites-planner` 目录里执行。
+在 Codex 里用 Skill Installer 从这个 GitHub 地址安装。安装后重启 Codex。
 
-可选：如果希望少输入脚本路径，可以注册成本机命令：
+给 Codex 的提示可以很短：
 
-```bash
-npm link
+```text
+请用 bilibili-favorites-planner skill 生成复核页。
 ```
 
-注册后可以用 `bili-favorites-planner` 代替 `node scripts/run-planner.mjs`。
+复核页导出 `reviewed-classification.jsonl` 后，再交给 Codex：
+
+```text
+请用 bilibili-favorites-planner skill 生成 Executor 任务包。
+```
+
+这种方式下，用户不需要记 Planner 命令。Codex 负责运行脚本、打开复核页、校验输出。
 
 ### 1.2 安装浏览器脚本
 
@@ -44,6 +50,17 @@ https://github.com/nj-zhangrui-arvin/bilibili-favorites-executor
 ```
 
 建议把 Chrome 专门用于 B 站自动化，日常浏览器和自动化浏览器分开。
+
+### 1.3 开发者手动模式
+
+熟悉终端的用户也可以不安装 Skill，直接克隆仓库运行 Node 脚本：
+
+```bash
+git clone https://github.com/nj-zhangrui-arvin/bilibili-favorites-planner.git
+cd bilibili-favorites-planner
+npm run validate:examples
+node scripts/run-planner.mjs auto ~/Downloads/bilibili-favorites-evidence.jsonl
+```
 
 ## 2. 采集收藏夹
 
@@ -73,17 +90,7 @@ https://space.bilibili.com/<你的 mid>/favlist
 
 ## 3. 运行 Planner
 
-把 `bilibili-favorites-evidence.jsonl` 交给 Codex，或运行 Planner 自动入口：
-
-```bash
-node scripts/run-planner.mjs auto bilibili-favorites-evidence.jsonl
-```
-
-如果已经执行过 `npm link`，也可以运行：
-
-```bash
-bili-favorites-planner auto bilibili-favorites-evidence.jsonl
-```
+把 `bilibili-favorites-evidence.jsonl` 交给 Codex，并说明要生成复核页。已安装 Skill 时，Codex 会自动运行 Planner。
 
 Planner 会：
 
@@ -110,11 +117,7 @@ Planner 会：
 
 ## 5. 生成任务包
 
-把 `reviewed-classification.jsonl` 交给 Codex，或运行：
-
-```bash
-node scripts/run-planner.mjs auto reviewed-classification.jsonl
-```
+把 `reviewed-classification.jsonl` 交给 Codex，并说明要生成 Executor 任务包。
 
 Planner 会：
 
